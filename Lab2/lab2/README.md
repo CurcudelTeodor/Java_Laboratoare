@@ -1,4 +1,4 @@
-Am rezolvat:
-*[x] Compulsory
-*[ ] Tema
-*[ ] Bonus 
+# Am rezolvat:
+-[x] Compulsory
+-[ ] Tema
+-[ ] Bonus 
