@@ -1,0 +1,1 @@
+Am rezolvat Compulosory si Tema.
