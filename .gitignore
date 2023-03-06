@@ -20,8 +20,8 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-.gradele
+.gradle
 .idea
 gradle
-gardew
+gardlew
 gradle.bat
