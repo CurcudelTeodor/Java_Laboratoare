@@ -1,0 +1,14 @@
+location=Location{name='Iasi', type=ORAS, x=0, y=0}
+location=Location{name='Galati', type=ORAS, x=7, y=-50}
+location=Location{name='Tecuci', type=ORAS, x=9, y=-55}
+location=Location{name='OTP', type=AEROPORT, x=-20, y=-70}
+
+road=Road{name='Iasi-Tecuci', type=JUDETEAN, length=88.0, speedLimit=90.0}
+road=Road{name='Tecuci-Otopeni', type=EXPRES, length=32.649, speedLimit=120.0}
+
+Instanta problemei este valida!
+Galati e conectata cu: Tecuci,
+OTP e conectata cu: Tecuci,
+Iasi e conectata cu:
+Tecuci e conectata cu: Galati, OTP,
+false
