@@ -2,15 +2,13 @@ package org.example;
 
 import java.util.Objects;
 
-public abstract class Location
-{
+public abstract class Location {
     protected String name;
     protected String type;
     protected int x;
     protected int y;
 
-    protected Location(String name, String type, int x, int y)
-    {
+    protected Location(String name, String type, int x, int y) {
         this.name = name;
         this.type = type;
         this.x = x;
@@ -21,12 +19,11 @@ public abstract class Location
         return name;
     }
 
-    protected int getX()
-    {
+    protected int getX() {
         return x;
     }
-    protected int getY()
-    {
+
+    protected int getY() {
         return y;
     }
 
@@ -36,13 +33,12 @@ public abstract class Location
      * Argumentul b trebuie sa fie de tipul Location.
      * Distanta este cea Euclidiana, considerand doar primele 3 cifre dupa virgula.
      *
-     * @author Teo
      * @param b locatia la care dorim sa ajungem, un capat al drumului
      * @return distanta dintre cele 2 locatii (this si b)
+     * @author Teo
      */
-    public double getDistanceTo(Location b)
-    {
-        return ( Math.floor(Math.sqrt((b.getX()-this.getX())*(b.getX()-this.getX()) + (b.getY()-this.getY())*(b.getY()-this.getY()))*1000)/1000 );
+    public double getDistanceTo(Location b) {
+        return (Math.floor(Math.sqrt((b.getX() - this.getX()) * (b.getX() - this.getX()) + (b.getY() - this.getY()) * (b.getY() - this.getY())) * 1000) / 1000);
     }
 
 

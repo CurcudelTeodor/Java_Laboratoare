@@ -2,9 +2,8 @@ package org.example;
 
 import java.util.*;
 
-public class Graph
-{
-    public Map<String, ArrayList<String>>adjList;
+public class Graph {
+    public Map<String, ArrayList<String>> adjList;
 
     /**
      * Construieste un graf cu locatii si drumuri sub forma de HashMap (cheie, valoare).
@@ -20,27 +19,24 @@ public class Graph
      * si apoi adaugam destinatie la lista lui plecare. Similar pentru celalalt
      * capat.
      *
-     * @author Teo
      * @param locations lista de obiecte de tip Location pentru care se va construi graful
      *                  (reprezentand nodurile)
-     * @param roads lista de obiecte de tip Road pentru care se va construi graful
-     *              (reprezentand muchii: avem drum de la A la B -> vom avea o muchie in graf
-     *              de la A la B)
+     * @param roads     lista de obiecte de tip Road pentru care se va construi graful
+     *                  (reprezentand muchii: avem drum de la A la B -> vom avea o muchie in graf
+     *                  de la A la B)
+     * @author Teo
      */
-    public Graph(ArrayList<Location> locations, ArrayList<Road> roads)
-    {
+    public Graph(ArrayList<Location> locations, ArrayList<Road> roads) {
         //initializam lista de adicenta
-        adjList = new HashMap<String,ArrayList<String>>();
-        for(Location loc: locations)
-        {
-            adjList.put(loc.getName(),new ArrayList<String>());
+        adjList = new HashMap<String, ArrayList<String>>();
+        for (Location loc : locations) {
+            adjList.put(loc.getName(), new ArrayList<String>());
         }
 
         //construim efectiv lista
-        for(Road element: roads)
-        {
-            String plecare= element.plecare;
-            String destinatie= element.destinatie;
+        for (Road element : roads) {
+            String plecare = element.plecare;
+            String destinatie = element.destinatie;
 
             ArrayList<String> adjList1 = adjList.get(plecare);
             adjList1.add(destinatie);
@@ -55,13 +51,13 @@ public class Graph
      * Pentru fiecare cheie (nume de locatie), parcurgem lista ei
      * si afisam locatiile cu care e conectata.
      *
-     * @author Teo
      * @param adjList lista de adiacenta prin care e reprezentat graful
      * @return afiseaza pe ecran lista de adiacenta
+     * @author Teo
      */
     public void printAdjList(Map<String, ArrayList<String>> adjList) {
         for (String loc : adjList.keySet()) {
-            System.out.print(loc+ " e conectata cu: ");
+            System.out.print(loc + " e conectata cu: ");
             ArrayList<String> adjLocs = adjList.get(loc);
             for (String loc2 : adjLocs) {
                 System.out.print(loc2 + ", ");
@@ -71,11 +67,9 @@ public class Graph
     }
 
     //verificam daca numele unei locatii se gaseste in lista de locatii
-    public boolean existsLocationByName(ArrayList<Location> locations, String numeLocatie)
-    {
-        for(Location element:locations)
-        {
-            if(element.getName().equals(numeLocatie))
+    public boolean existsLocationByName(ArrayList<Location> locations, String numeLocatie) {
+        for (Location element : locations) {
+            if (element.getName().equals(numeLocatie))
                 return true;
         }
         return false;
@@ -100,43 +94,38 @@ public class Graph
      * Daca coada a ramas vida si nu am returat true, inseamna ca nu am putut ajunge
      * la locatia dorita, deci returnam false.
      *
-     * @author Teo
      * @param locations lista de obiecte de tip Location pentru care a fost construit graful
-     * @param roads lista de obiecte de tip Road pentru care a fost contruit graful
-     * @param plecare numele obiectului de tip Location de unde plecam
-     * @param sosire numele obiectului de tip Location unde vrem sa ajungem
+     * @param roads     lista de obiecte de tip Road pentru care a fost contruit graful
+     * @param plecare   numele obiectului de tip Location de unde plecam
+     * @param sosire    numele obiectului de tip Location unde vrem sa ajungem
      * @return true daca putem ajunge din obiectul Location cu numele plecare in obiectul Location cu numele sosire, false altfel
      * @throws IllegalArgumentException daca macar un nume nu exista
+     * @author Teo
      */
     //true -> Putem ajunge din locatia cu numele plecare in sosire; false -> altfel
-    public boolean canReach(ArrayList<Location> locations, ArrayList<Road> roads,String plecare,String sosire)
-    {
+    public boolean canReach(ArrayList<Location> locations, ArrayList<Road> roads, String plecare, String sosire) {
         //verificari
-        if (!existsLocationByName(locations, plecare) || !existsLocationByName(locations, sosire))
-        {
+        if (!existsLocationByName(locations, plecare) || !existsLocationByName(locations, sosire)) {
             throw new IllegalArgumentException("Una dintre locatii nu exista!");
         }
 
-        Set<String> vizitati=new HashSet<>();
+        Set<String> vizitati = new HashSet<>();
         vizitati.add(plecare);
 
         //coada pentru BFS implementata ca o list inlantuita
-        LinkedList<String> coada= new LinkedList<>();
+        LinkedList<String> coada = new LinkedList<>();
         coada.offer(plecare);
 
-        while(coada.isEmpty()==false)
-        {
+        while (coada.isEmpty() == false) {
             //luam numele locatiei din capul cozii
             String locCurenta = coada.poll();
-            if(locCurenta.equals(sosire))
+            if (locCurenta.equals(sosire))
                 return true;
 
-            //parcurgem lista de vecini a locatiei curente
-            else for(String vecin:adjList.get(locCurenta))
-            {
+                //parcurgem lista de vecini a locatiei curente
+            else for (String vecin : adjList.get(locCurenta)) {
                 //vecinul nu a fost vizitat
-                if(vizitati.contains(vecin)==false)
-                {
+                if (vizitati.contains(vecin) == false) {
                     vizitati.add(vecin);
                     coada.offer(vecin);
                 }

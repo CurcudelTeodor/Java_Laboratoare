@@ -1,7 +1,6 @@
 package org.example;
 
-public enum RoadType
-{
+public enum RoadType {
     AUTOSTRADA,
     EXPRES,
     NATIONAL,

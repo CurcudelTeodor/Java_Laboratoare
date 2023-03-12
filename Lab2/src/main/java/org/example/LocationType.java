@@ -1,7 +1,6 @@
 package org.example;
 
-public enum LocationType
-{
+public enum LocationType {
     ORAS,
     AEROPORT,
     BENZINARIE;

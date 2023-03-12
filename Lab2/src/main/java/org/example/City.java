@@ -1,11 +1,10 @@
 package org.example;
 
-public class City extends Location
-{
+public class City extends Location {
     private int population;
-    public City(String name, int x, int  y)
-    {
-        super(name,"ORAS",x,y);
+
+    public City(String name, int x, int y) {
+        super(name, "ORAS", x, y);
     }
 
     public void setPopulation(int population) {

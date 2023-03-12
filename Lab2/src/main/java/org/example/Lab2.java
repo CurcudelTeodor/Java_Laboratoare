@@ -1,8 +1,7 @@
 package org.example;
 
 public class Lab2 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         /*
         System.out.println("Hello world!");
         Location iasi=new Location("Iasi",LocationType.ORAS,0,0);
@@ -18,14 +17,14 @@ public class Lab2 {
         System.out.println(roadIasiGalati);
         */
 
-        Location iasi=new City("Iasi",0,0);
-        Location otopeni=new Airport("OTP",-20,-70);
-        Location galati=new City("Galati", 7,-50);
-        Location tecuci=new City("Tecuci",9,-55);
+        Location iasi = new City("Iasi", 0, 0);
+        Location otopeni = new Airport("OTP", -20, -70);
+        Location galati = new City("Galati", 7, -50);
+        Location tecuci = new City("Tecuci", 9, -55);
 
-        Road roadIasiGalati=new Road("Iasi-Galati",RoadType.NATIONAL,99,iasi,galati);
-        Road roadGalatiTecuci=new Road("Iasi-Tecuci",RoadType.JUDETEAN,88,galati,tecuci);
-        Road tecuciOtopeni=new Road("Tecuci-Otopeni",RoadType.EXPRES,32.649,tecuci,otopeni);
+        Road roadIasiGalati = new Road("Iasi-Galati", RoadType.NATIONAL, 99, iasi, galati);
+        Road roadGalatiTecuci = new Road("Iasi-Tecuci", RoadType.JUDETEAN, 88, galati, tecuci);
+        Road tecuciOtopeni = new Road("Tecuci-Otopeni", RoadType.EXPRES, 32.649, tecuci, otopeni);
 
         Problem pb = new Problem();
 
@@ -35,10 +34,10 @@ public class Lab2 {
         pb.addLocation(otopeni);
 
         //pb.addRoad(roadIasiGalati,iasi,galati);
-        pb.addRoad(roadGalatiTecuci,iasi,tecuci);
-        pb.addRoad(tecuciOtopeni,tecuci,otopeni);
+        pb.addRoad(roadGalatiTecuci, iasi, tecuci);
+        pb.addRoad(tecuciOtopeni, tecuci, otopeni);
 
-       // System.out.println(iasi.equals(pb.getLocations(1)));
+        // System.out.println(iasi.equals(pb.getLocations(1)));
 
         System.out.println(pb.toStringLocations());
         System.out.println(pb.toStringRoads());
@@ -46,7 +45,7 @@ public class Lab2 {
         //Daca ceva nu respecta conditiile de valididate -> throw exception
         //isValidInstance implementata si functionala totusi
         pb.validCoord();
-        if(pb.isValid==true)
+        if (pb.isValid == true)
             System.out.println("Instanta problemei este valida!");
 
         //isValidInstance
@@ -68,9 +67,9 @@ public class Lab2 {
             System.out.println("date gresite!");
          */
 
-        Graph g=new Graph(pb.locations,pb.roads);
+        Graph g = new Graph(pb.locations, pb.roads);
         g.printAdjList(g.adjList);
 
-        System.out.println(g.canReach(pb.locations,pb.roads,"Iasi","Galati"));
+        System.out.println(g.canReach(pb.locations, pb.roads, "Iasi", "Galati"));
     }
 }
