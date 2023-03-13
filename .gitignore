@@ -23,5 +23,5 @@ gradle-app.setting
 .gradle
 .idea
 gradle
-gardlew
-gradle.bat
+gradlew
+gradlew.bat

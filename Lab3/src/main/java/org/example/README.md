@@ -5,3 +5,4 @@
 * [x] Compulsory
 * [x] Tema3
 * [ ] Bonusul (inca nu)
+* 
