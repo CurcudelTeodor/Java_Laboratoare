@@ -3,5 +3,5 @@
 ## Am rezolvat:
 
 * [x] Compulosory
-* [ ] Tema
+* [x] Tema
 * [ ] Bonus

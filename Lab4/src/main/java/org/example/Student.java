@@ -2,7 +2,7 @@ package org.example;
 
 public class Student implements Node{
 
-    private String name;
+    public String name;
     @Override
     public String getName() {
         return this.name;

@@ -1,28 +1,40 @@
 package org.example;
 
+import com.github.javafaker.Faker;
+//import org.jgrapht.Graph;
+//import org.jgrapht.graph.DefaultEdge;
 import java.util.*;
 import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
 
-        var studends = IntStream.rangeClosed(0, 3)
-                .mapToObj(i -> new Student("S" + i))
+        Faker faker = new Faker();
+
+        var students = IntStream.rangeClosed(0, 6)
+                .mapToObj(i -> new Student(faker.name().firstName()))
                 .toArray(Student[]::new);
 
-
-        //studends[studends.length-1]=new Student("Teo");
-       // studends[studends.length-1]=new Student("Stefan");
-        studends[studends.length-1]=new Student("Andrei");
-
         var projects = IntStream.rangeClosed(0, 6)
-                .mapToObj(i -> new Project("Project" + i))
+                .mapToObj(i -> new Project(faker.hobbit().location()))
                 .toArray(Project[]::new);
 
-        projects[projects.length-1]=new Project("Java");
+//        List<String> projects1= new LinkedList<>();
+//        for(int i=0; i<25; i++){
+//            projects1.add(faker.hobbit().location());
+//        }
+//        System.out.println("ceva" + projects1);
 
+
+        for(int i =0 ;i< projects.length;i++){
+            System.out.println(projects[i]);
+        }
+
+
+        //projects[projects.length-1] = new Project("Java");
+
+        /*
         List <Student> listOfStudents = new LinkedList<>();
-
         for (Student s : studends){
             listOfStudents.add(s);
         }
@@ -46,6 +58,19 @@ public class Main {
         for (Project p : listofProjects){
             System.out.println(p.getName());
         }
+        */
+
+       // Graph<Integer, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
+
+        Problem p = new Problem(students, projects);
+
+        p.printPreferinte();
+        System.out.print("Student cu putine preferinte: ");
+        System.out.println(p.getPickyStudents());
+
+        System.out.println(p.greedyFirstPick());
+
+
 
     }
 }

@@ -2,7 +2,7 @@ package org.example;
 
 public class Project implements Node{
 
-    String name;
+    public String name;
 
     public Project(String name) {
         this.name = name;
