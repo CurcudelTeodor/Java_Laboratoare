@@ -1,1 +1,1 @@
-Am facut compulsory 5
+Am terminat compulsory 5
