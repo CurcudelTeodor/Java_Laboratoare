@@ -3,6 +3,7 @@ package org.example;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public abstract class CatalogUtil {
@@ -13,6 +14,7 @@ public abstract class CatalogUtil {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(new File(path), catalog);
     }
+
     public static Catalog load(String path) throws InvalidCatalogException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
