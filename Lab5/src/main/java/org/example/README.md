@@ -1,1 +1,0 @@
-Am terminat compulsory 5
