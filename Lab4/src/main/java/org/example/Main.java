@@ -1,10 +1,12 @@
 package org.example;
 
 import com.github.javafaker.Faker;
-//import org.jgrapht.Graph;
+import org.jgrapht.Graph;
+import org.jgrapht.graph.SimpleGraph;
 //import org.jgrapht.graph.DefaultEdge;
 import java.util.*;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,17 +21,16 @@ public class Main {
                 .mapToObj(i -> new Project(faker.hobbit().location()))
                 .toArray(Project[]::new);
 
-//        List<String> projects1= new LinkedList<>();
-//        for(int i=0; i<25; i++){
-//            projects1.add(faker.hobbit().location());
-//        }
-//        System.out.println("ceva" + projects1);
+        List<String> projects1= new LinkedList<>();
+        for(int i=0; i<25; i++){
+            projects1.add(faker.hobbit().location());
+        }
+        System.out.println("ceva" + projects1);
 
 
-        for(int i =0 ;i< projects.length;i++){
+        for(int i = 0 ;i < projects.length;i++){
             System.out.println(projects[i]);
         }
-
 
         //projects[projects.length-1] = new Project("Java");
 
@@ -60,7 +61,7 @@ public class Main {
         }
         */
 
-       // Graph<Integer, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
+       //Graph<Integer, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
 
         Problem p = new Problem(students, projects);
 
@@ -70,6 +71,12 @@ public class Main {
 
         System.out.println(p.greedyFirstPick());
 
+        int sum = Arrays.asList(1, 2, 3, 4, 5).stream()
+                .filter(x -> x >= 3)
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        System.out.println("sum esre :" +sum);
 
 
     }
