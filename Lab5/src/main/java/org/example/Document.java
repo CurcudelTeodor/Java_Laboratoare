@@ -12,6 +12,7 @@ public class Document {
     }
 
     public Document(String id, String title, String location) throws FileNotFoundException {
+
         this.id = id;
         this.title = title;
         if(!new File(location).exists())
