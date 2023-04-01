@@ -14,7 +14,8 @@ public class ControlPanel extends JPanel {
     //create all buttons (Load, Exit, etc.)
 
     public ControlPanel(MainFrame frame) {
-        this.frame = frame; init();
+        this.frame = frame;
+        init();
     }
     private void init() {
         //change the default layout manager (just for fun)

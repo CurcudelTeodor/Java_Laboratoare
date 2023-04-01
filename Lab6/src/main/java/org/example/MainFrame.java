@@ -32,6 +32,6 @@ public class MainFrame extends JFrame {
         add(controlPanel, SOUTH);
 
         //invoke the layout manager
-        pack();
+        this.pack();
     }
 }
