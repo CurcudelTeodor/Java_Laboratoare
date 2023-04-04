@@ -3,5 +3,5 @@
 ## Am rezolvat: 
 
 * [x] Compulsory
-* [ ] Tema
+* [x] Tema (am facut si o codare a imaginii)
 * [ ] Bonus

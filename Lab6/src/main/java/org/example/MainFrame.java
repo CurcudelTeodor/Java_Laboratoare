@@ -3,6 +3,7 @@ package org.example;
 import javax.swing.*;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 
 import static java.awt.BorderLayout.*;
 
@@ -12,12 +13,12 @@ public class MainFrame extends JFrame {
     ControlPanel controlPanel;
     DrawingPanel canvas;
 
-    public MainFrame() {
+    public MainFrame() throws FileNotFoundException {
         super("My Drawing Application");
         init();
     }
 
-    private void init() {
+    private void init() throws FileNotFoundException {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //create the components

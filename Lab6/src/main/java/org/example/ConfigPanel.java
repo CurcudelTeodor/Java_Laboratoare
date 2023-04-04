@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Vector;
 
 public class ConfigPanel extends JPanel {
@@ -27,9 +25,9 @@ public class ConfigPanel extends JPanel {
 
         linesLabel = new JLabel("Line probability:");
         Vector<Double> options = new Vector<>(Arrays.asList(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0));
-        Vector vec1 = new Vector (10);
-        vec1.add(0.1);
-        vec1.add(0.2);
+        //Vector vec1 = new Vector (10);
+        //vec1.add(0.1);
+        //vec1.add(0.2);
         linesComboBox = new JComboBox(options);
 
         //create the rest of the components
@@ -48,10 +46,14 @@ public class ConfigPanel extends JPanel {
                 double edgeProbability = (double) linesComboBox.getSelectedItem();
 
                 DrawingPanel drawingPanel = frame.canvas;
-                drawingPanel.paintComponent(numVertices,edgeProbability);
+                Graphics g = frame.canvas.getGraphics();
+                drawingPanel.creeazaPuncteSiLinii(g);
+
+//
+//                g.setColor(Color.ORANGE);
+//                g.fillRect(0,0,800,600);
             }
         });
 
     }
 }
-
