@@ -6,4 +6,3 @@
 * [ ] Tema
 * [ ] Bonus
 
-Imi cer scuze de intarziere :pensive:
