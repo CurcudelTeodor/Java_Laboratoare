@@ -1,0 +1,124 @@
+run1:
+
+Robot cu numele Robot 0 coordonatele: i=2 j=1
+Robot cu numele Robot 1 coordonatele: i=2 j=4
+Robot cu numele Robot 2 coordonatele: i=0 j=0
+Robot cu numele Robot 3 coordonatele: i=0 j=1
+Robot cu numele Robot 4 coordonatele: i=3 j=2
+Robot cu numele Robot 5 coordonatele: i=1 j=3
+Enter command:
+NRVISITED: 1--Robot 0 celula vizitata (1, 1) si am extras token-ul: 1
+NRVISITED: 2--Robot 5 celula vizitata (0, 3) si am extras token-ul: 2
+NRVISITED: 3--Robot 4 celula vizitata (2, 2) si am extras token-ul: 3
+NRVISITED: 4--Robot 3 celula vizitata (0, 2) si am extras token-ul: 4
+NRVISITED: 5--Robot 2 celula vizitata (0, 1) si am extras token-ul: 5
+NRVISITED: 6--Robot 1 celula vizitata (1, 4) si am extras token-ul: 6
+pause all
+start all
+NRVISITED: 7--Robot 5 celula vizitata (0, 4) si am extras token-ul: 7
+NRVISITED: 8--Robot 4 celula vizitata (1, 2) si am extras token-ul: 8
+NRVISITED: 9--Robot 2 celula vizitata (0, 0) si am extras token-ul: 9
+NRVISITED: 10--Robot 4 celula vizitata (1, 3) si am extras token-ul: 10
+Enter command:
+NRVISITED: 11--Robot 2 celula vizitata (1, 0) si am extras token-ul: 11
+NRVISITED: 12--Robot 4 celula vizitata (2, 3) si am extras token-ul: 12
+NRVISITED: 13--Robot 5 celula vizitata (2, 4) si am extras token-ul: 13
+NRVISITED: 14--Robot 2 celula vizitata (2, 0) si am extras token-ul: 14
+NRVISITED: 15--Robot 4 celula vizitata (3, 3) si am extras token-ul: 15
+NRVISITED: 16--Robot 5 celula vizitata (3, 4) si am extras token-ul: 16
+NRVISITED: 17--Robot 2 celula vizitata (2, 1) si am extras token-ul: 17
+NRVISITED: 18--Robot 5 celula vizitata (4, 4) si am extras token-ul: 18
+NRVISITED: 19--Robot 4 celula vizitata (4, 3) si am extras token-ul: 19
+NRVISITED: 20--Robot 2 celula vizitata (3, 1) si am extras token-ul: 20
+NRVISITED: 21--Robot 4 celula vizitata (4, 2) si am extras token-ul: 21
+NRVISITED: 22--Robot 2 celula vizitata (3, 2) si am extras token-ul: 22
+NRVISITED: 23--Robot 4 celula vizitata (4, 1) si am extras token-ul: 23
+NRVISITED: 24--Robot 4 celula vizitata (4, 0) si am extras token-ul: 24
+NRVISITED: 25--Robot 4 celula vizitata (3, 0) si am extras token-ul: 25
+Robot 4 a terminat explorarea
+Robot 4 a colectat 10 token-uri.
+Robot 2 a terminat explorarea
+Robot 5 a terminat explorarea
+Robot 5 a colectat 5 token-uri.
+Robot 2 a colectat 7 token-uri.
+Robot 0 a terminat explorarea
+Robot 3 a terminat explorarea
+Robot 0 a colectat 1 token-uri.
+Robot 3 a colectat 1 token-uri.
+Robot 1 a terminat explorarea
+Robot 1 a colectat 1 token-uri.
+exit
+Total exploration time: 168 seconds
+Token counts:
+Robot 0: 1
+Robot 1: 1
+Robot 2: 7
+Robot 3: 1
+Robot 4: 10
+Robot 5: 5
+
+Process finished with exit code 0
+
+
+-----------------------------------
+run2 dupa ce am afisat si harta:
+Robot cu numele Robot 0 coordonatele: i=2 j=4
+Robot cu numele Robot 1 coordonatele: i=3 j=0
+Robot cu numele Robot 2 coordonatele: i=4 j=3
+Robot cu numele Robot 3 coordonatele: i=1 j=2
+Robot cu numele Robot 4 coordonatele: i=1 j=4
+Robot cu numele Robot 5 coordonatele: i=2 j=2
+Enter command:
+NRVISITED: 1--Robot 0 celula vizitata (1, 4) si am extras token-ul: 1
+NRVISITED: 2--Robot 5 celula vizitata (1, 2) si am extras token-ul: 2
+NRVISITED: 3--Robot 1 celula vizitata (2, 0) si am extras token-ul: 3
+NRVISITED: 4--Robot 2 celula vizitata (3, 3) si am extras token-ul: 4
+NRVISITED: 5--Robot 2 celula vizitata (2, 3) si am extras token-ul: 5
+NRVISITED: 6--Robot 0 celula vizitata (0, 4) si am extras token-ul: 6
+NRVISITED: 7--Robot 5 celula vizitata (0, 2) si am extras token-ul: 7
+NRVISITED: 8--Robot 1 celula vizitata (1, 0) si am extras token-ul: 8
+NRVISITED: 9--Robot 2 celula vizitata (1, 3) si am extras token-ul: 9
+NRVISITED: 10--Robot 1 celula vizitata (0, 0) si am extras token-ul: 10
+NRVISITED: 11--Robot 5 celula vizitata (0, 3) si am extras token-ul: 11
+NRVISITED: 12--Robot 4 celula vizitata (0, 1) si am extras token-ul: 12
+NRVISITED: 13--Robot 3 celula vizitata (1, 1) si am extras token-ul: 13
+NRVISITED: 14--Robot 2 celula vizitata (2, 1) si am extras token-ul: 14
+NRVISITED: 15--Robot 4 celula vizitata (2, 2) si am extras token-ul: 15
+NRVISITED: 16--Robot 3 celula vizitata (3, 2) si am extras token-ul: 16
+NRVISITED: 17--Robot 3 celula vizitata (4, 2) si am extras token-ul: 17
+NRVISITED: 18--Robot 4 celula vizitata (4, 3) si am extras token-ul: 18
+NRVISITED: 19--Robot 5 celula vizitata (4, 4) si am extras token-ul: 19
+NRVISITED: 20--Robot 1 celula vizitata (3, 4) si am extras token-ul: 20
+NRVISITED: 21--Robot 3 celula vizitata (2, 4) si am extras token-ul: 21
+NRVISITED: 22--Robot 5 celula vizitata (3, 1) si am extras token-ul: 22
+NRVISITED: 23--Robot 2 celula vizitata (4, 1) si am extras token-ul: 23
+NRVISITED: 24--Robot 3 celula vizitata (4, 0) si am extras token-ul: 24
+NRVISITED: 25--Robot 1 celula vizitata (3, 0) si am extras token-ul: 25
+Robot 4 a terminat explorarea
+Robot 3 a terminat explorarea
+Robot 2 a terminat explorarea
+Robot 2 a colectat 5 token-uri.
+Robot 4 a colectat 3 token-uri.
+Robot 3 a colectat 5 token-uri.
+Robot 0 a terminat explorarea
+Robot 0 a colectat 2 token-uri.
+Robot 5 a terminat explorarea
+Robot 5 a colectat 5 token-uri.
+Robot 1 a terminat explorarea
+Robot 1 a colectat 5 token-uri.
+exit
+Total exploration time: 8 seconds
+Token counts:
+Robot 0: 2
+Robot 1: 5
+Robot 2: 5
+Robot 3: 5
+Robot 4: 3
+Robot 5: 5
+10 12 7 11 6
+8 13 2 9 1
+3 14 15 5 21
+25 22 16 4 20
+24 23 17 18 19
+
+Process finished with exit code 0

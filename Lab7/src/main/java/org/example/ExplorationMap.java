@@ -4,6 +4,7 @@ class ExplorationMap {
     private int[][] map;
     private int n;
 
+
     public int getN() {
         return n;
     }
@@ -12,7 +13,8 @@ class ExplorationMap {
         return map;
     }
 
-    private int nrVisited;
+    //cate celule au fost explorate din map
+    public int nrVisited;
 
     public int getNrVisited() {
         return nrVisited;
@@ -36,8 +38,10 @@ class ExplorationMap {
         return true;
     }
     public synchronized void visitCell(int i, int j, int token) {
+        //System.out.println("VISIT CELL: "+ i + " aaaa " + j);
         map[i][j] = token;
         nrVisited++;
+        //System.out.println("NRVISTED: " + nrVisited);
     }
     public synchronized boolean totalExplorata() {
         return nrVisited == n * n;
