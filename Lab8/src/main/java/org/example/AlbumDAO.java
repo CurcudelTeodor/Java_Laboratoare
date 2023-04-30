@@ -1,5 +1,6 @@
 package org.example;
 
+import java.security.spec.RSAOtherPrimeInfo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,80 +9,85 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumDAO {
-
     private Connection connection;
 
     public AlbumDAO() throws SQLException {
-        connection = DatabaseManager.getInstance().getConnection();
+        connection = Database.getConnection();
     }
 
-    public void createAlbum(int releaseYear, String title, int artistId, int[] genreIds) throws SQLException {
-        String sql = "INSERT INTO albums (release_year, title, artist_id) VALUES (?, ?, ?)";
-        PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, releaseYear);
-        statement.setString(2, title);
-        statement.setInt(3, artistId);
-        int affectedRows = statement.executeUpdate();
+    public void createAlbum(Album album) throws SQLException {
+        String sql = "insert into albums (release_year, title, artist_id) values (?,?,?)";
+        //try with resources -> se inchide automat conexiunea
+        try (PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1, album.getReleaseYear());
+            statement.setString(2, album.getTitle());
+            statement.setInt(3, album.getArtistID());
 
-        if (affectedRows == 0) {
-            throw new SQLException("Fail la creare album, niciun rand afectat");
-        }
+            int affectedRows = statement.executeUpdate();
 
-        ResultSet generatedKeys = statement.getGeneratedKeys();
-        if (generatedKeys.next()) {
-            int albumId = generatedKeys.getInt(1);
-            insertAlbumGenres(albumId, genreIds);
-        } else {
-            throw new SQLException("Fail la creare album, nu am obtinut id");
+            if (affectedRows == 0) {
+                throw new SQLException("Fail la creare album, niciun rand afectat");
+            }
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                System.out.println(generatedKeys.getInt(1));
+                int albumId = generatedKeys.getInt(1);
+                insertAlbumGenres(albumId, album.getGenreIds());
+            } else {
+                throw new SQLException("Fail la creare album, nu am obtinut id");
+            }
+
+            //connection.commit();
         }
     }
 
-    private void insertAlbumGenres(int albumId, int[] genreIds) throws SQLException {
-        String sql = "INSERT INTO album_genres (album_id, genre_id) VALUES (?, ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        for (int genreId : genreIds) {
-            statement.setInt(1, albumId);
-            statement.setInt(2, genreId);
-            statement.addBatch();
+    private void insertAlbumGenres(int albumID, int [] genreIDs) throws SQLException{
+        String sql = "insert into album_genres (album_id, genre_id) values (?,?)";
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            for(int gen_id : genreIDs){
+                statement.setInt(1,albumID);
+                statement.setInt(2,gen_id);
+                statement.addBatch();
+            }
+            statement.executeBatch();
         }
-        statement.executeBatch();
     }
-
 
     public List<Album> getAll() throws SQLException {
-        List<Album> albums = new ArrayList<>();
-
-        String sql = "SELECT * FROM albums";
+        List <Album> albums = new ArrayList<>();
+        String sql = "select * from albums";
         PreparedStatement stmt = connection.prepareStatement(sql);
 
         ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()) {
-            Album album = new Album();
-            album.setId(rs.getInt("id"));
-            album.setReleaseYear(rs.getInt("release_year"));
-            album.setTitle(rs.getString("title"));
-            album.setArtist(rs.getString("artist"));
-            // luam genre id din tabelul junction
-            int albumId = rs.getInt("id");
+        while(rs.next()){
+            int releaseYear = rs.getInt("release_year");
+            String title = rs.getString("title");
+            int artistID = rs.getInt("artist_id");
+
+            //vedem ce genuri are albumul
+            int albumID = rs.getInt("id");
             List<Integer> genreIds = new ArrayList<>();
-            String sql2 = "SELECT genre_id FROM album_genre WHERE album_id = ?";
+            String sql2 = "select genre_id from album_genres where album_id = ?";
             PreparedStatement stmt2 = connection.prepareStatement(sql2);
-            stmt2.setInt(1, albumId);
+            stmt2.setInt(1,albumID);
             ResultSet rs2 = stmt2.executeQuery();
-            while (rs2.next()) {
+            while(rs2.next()){
                 genreIds.add(rs2.getInt("genre_id"));
             }
-            album.setGenreIds(genreIds.stream().mapToInt(Integer::intValue).toArray());
+            Album album = new Album(releaseYear,title,artistID,genreIds.stream().mapToInt(Integer::intValue).toArray());
             albums.add(album);
+            stmt2.close();
         }
-
         rs.close();
         stmt.close();
-
         return albums;
     }
 
+
+
+    /*
     public void update(Album album) throws SQLException {
         String sql = "UPDATE albums SET release_year = ?, title = ?, artist = ? WHERE id = ?";
         PreparedStatement stmt = connection.prepareStatement(sql);
@@ -145,5 +151,5 @@ public class AlbumDAO {
             }
         }
     }
-
+     */
 }
