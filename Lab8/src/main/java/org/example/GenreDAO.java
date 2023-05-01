@@ -9,7 +9,7 @@ public class GenreDAO {
     private Connection connection;
 
     public GenreDAO() throws SQLException {
-        connection = Database.getConnection();
+        connection = Database.getConectionFromPool();
     }
 
     public void createGenre(String genreName) {
@@ -34,7 +34,7 @@ public class GenreDAO {
     }
 
     public Genre findByName(String name, List<Genre> lista) throws SQLException {
-        Connection con = Database.getConnection();
+        Connection con = Database.getConectionFromPool();
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(
                      "select id from genres where name='" + name + "'")) {
@@ -47,7 +47,7 @@ public class GenreDAO {
     }
 
     public Genre findById(int id, List<Genre> lista) throws SQLException {
-        Connection con = Database.getConnection();
+        Connection con = Database.getConectionFromPool();
         try(Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(
                     "select name from genres where id=" + id)){

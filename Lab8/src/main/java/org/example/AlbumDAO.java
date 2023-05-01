@@ -1,6 +1,5 @@
 package org.example;
 
-import java.security.spec.RSAOtherPrimeInfo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ public class AlbumDAO {
     private Connection connection;
 
     public AlbumDAO() throws SQLException {
-        connection = Database.getConnection();
+        connection = Database.getConectionFromPool();
     }
 
     public void createAlbum(Album album) throws SQLException {

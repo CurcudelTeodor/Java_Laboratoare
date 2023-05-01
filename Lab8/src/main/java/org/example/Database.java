@@ -1,8 +1,12 @@
 package org.example;
 
+
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 
 public class Database {
     private static final String URL = "jdbc:postgresql://localhost:5432/JavaLab8";
@@ -10,21 +14,22 @@ public class Database {
     private static final String PASSWORD = "teo";
     private static Connection connection = null;
 
-    public static Connection getConnection() throws SQLException {
-        createConnection();
-        return connection;
-    }
-    private static void createConnection() {
+    private static ComboPooledDataSource cpds;
+
+    static {
         try {
-            connection = DriverManager.getConnection(URL,USER,PASSWORD);
-            //connection.setAutoCommit(false);
-        } catch (SQLException e) {
-            System.err.println(e);
+            cpds = new ComboPooledDataSource();
+            cpds.setDriverClass("org.postgresql.Driver");
+            cpds.setJdbcUrl(URL);
+            cpds.setUser(USER);
+            cpds.setPassword(PASSWORD);
+        } catch (Exception e) {
+            System.err.println("Error creating connection pool: " + e.getMessage());
         }
     }
-    public static void closeConnection() throws SQLException {
-        if (connection!=null) {
-            connection.close();
-        }
+
+    public static Connection getConectionFromPool() throws SQLException {
+       return cpds.getConnection();
     }
+
 }

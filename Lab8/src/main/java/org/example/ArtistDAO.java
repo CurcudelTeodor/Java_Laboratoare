@@ -1,16 +1,14 @@
 package org.example;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ArtistDAO {
     private Connection connection;
 
     public ArtistDAO() throws SQLException {
-        connection = Database.getConnection();
+        connection = Database.getConectionFromPool();
     }
     public void createArtist(String artistName){
         String sql = "insert into artists (name) values (?)";
@@ -38,7 +36,7 @@ public class ArtistDAO {
     }
 
     public Artist findByName(String name, List<Artist> lista) throws SQLException {
-        Connection con = Database.getConnection();
+        Connection con = Database.getConectionFromPool();
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(
                      "select id from artists where name='" + name + "'")) {
@@ -51,7 +49,7 @@ public class ArtistDAO {
     }
 
     public Artist findById(int id, List<Artist> lista) throws SQLException {
-        Connection con = Database.getConnection();
+        Connection con = Database.getConectionFromPool();
         try(Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(
                     "select name from artists where id=" + id)){

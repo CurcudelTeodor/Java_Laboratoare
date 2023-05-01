@@ -19,11 +19,11 @@ public class Main {
         5 - Sam Cooke
         6 - Radiohead
         7 - Freddie Dredd
+        8 - Lil Uzi Vert
         */
 
 
         /*
-        ArtistDAO artistDAO = new ArtistDAO();
         Artist travis = new Artist("Travis Scott");
         Artist kanye = new Artist("Kanye West");
         Artist baby = new Artist("Lil Baby");
@@ -31,6 +31,7 @@ public class Main {
         Artist sam = new Artist("Sam Cooke");
         Artist head = new Artist("Radiohead");
         Artist freddie = new Artist("Freddie Dredd");
+        Artist uzi = new Artist("Lil Uzi Vert");
 
         List <Artist> listaArtisti = new LinkedList<>();
         listaArtisti.add(travis);
@@ -40,6 +41,7 @@ public class Main {
         listaArtisti.add(sam);
         listaArtisti.add(head);
         listaArtisti.add(freddie);
+        listaArtisti.add(uzi);
 
         artistDAO.createArtist(travis.getName());
         artistDAO.createArtist(kanye.getName());
@@ -48,6 +50,7 @@ public class Main {
         artistDAO.createArtist(sam.getName());
         artistDAO.createArtist(head.getName());
         artistDAO.createArtist(freddie.getName());
+        artistDAO.createArtist(uzi.getName());
 
 
         System.out.println(artistDAO.findByName("Travis Scott",listaArtisti));
@@ -164,6 +167,6 @@ public class Main {
 
          */
         // -------------- Albume ----------------
-        
+        ImportDataFromCSV.importDataFromCSV();
     }
 }
