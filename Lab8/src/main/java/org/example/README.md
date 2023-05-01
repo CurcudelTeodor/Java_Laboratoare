@@ -24,4 +24,6 @@
   sunt in esenta acelasi lucru. Daca nu am elimina spatiile, s-ar considera 
   ca fiind diferite. `Pop` (fara spatiu in fata) poate aparea atunci cand este
   primul gen care apare pe o anumita linie, ex: `Pop, Funk`.
+  
+  * Link albume: https://www.kaggle.com/datasets/notgibs/500-greatest-albums-of-all-time-rolling-stone?resource=download 
 * [ ] Bonus
