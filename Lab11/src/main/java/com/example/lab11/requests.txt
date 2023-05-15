@@ -1,0 +1,30 @@
+### Request-urile generate de mine
+POST http://localhost:8084/add?name=Teo&color=orange
+
+<> 2023-05-16T020600.200.txt
+
+###
+GET http://localhost:8084/list
+
+<> 2023-05-16T021115.200.json
+<> 2023-05-16T020836.200.json
+
+###
+POST http://localhost:8084/add?name=Teodora&color=orange
+
+<> 2023-05-16T020936.200.txt
+
+###
+POST http://localhost:8084/add?name=Travis&color=black
+
+<> 2023-05-16T021025.200.txt
+
+###
+POST http://localhost:8084/add?name=TeodoraGF<3&color=blue
+
+<> 2023-05-16T021104.200.txt
+
+###
+GET http://localhost:8084/find/4
+
+<> 2023-05-16T021137.200.json
