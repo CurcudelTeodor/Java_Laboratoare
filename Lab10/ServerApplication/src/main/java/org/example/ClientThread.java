@@ -5,15 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 class ClientThread extends Thread {
     private Socket clientSocket;
     private GameServer gameServer;
     private Game game;
-    public List<Game> activeGames = new ArrayList<>();
+   // public List<Game> activeGames = new ArrayList<>();
+    private Timer timer;
+    private TimerTask timeoutTask;
+
+    private int BOARDSIZE = 10;
 
     public ClientThread(Socket clientSocket, GameServer gameServer) {
         this.clientSocket = clientSocket;
@@ -41,54 +43,49 @@ class ClientThread extends Thread {
                 }
 
                 else if(command.startsWith("create game ")){
-                    String gameID = command.substring(12);
-                    System.out.println("Server received the command" + command);
-                    output.println("Created game with the id = " + gameID);
+                    System.out.println("AAAAAAAAAA" + this.getId());
+                    int gameId = gameServer.createGame();
+                    gameServer.getActiveGames().add(new Game(gameId,BOARDSIZE));
+                    output.println("Game created with ID: " + gameId);
                     output.flush();
-
-                    this.game = new Game(gameID,3);
-                    activeGames.add(game);
                 }
 
                 else if(command.startsWith("join game ")){
-                    boolean existaJoc = false;
-                    String gameID = command.substring(10);
-                    System.out.println("Server received the command" + command);
-
-                    for(Game joc : activeGames){
-                        if(Objects.equals(joc.getId(), gameID)){
-                            existaJoc = true;
-                            output.println("Joined game with the id= " + gameID);
-                            break;
+                    String[] tokens = command.split(" ");
+                    if (tokens.length == 3) {
+                        int gameId = Integer.parseInt(tokens[2]);
+                        boolean joined = gameServer.joinGame(gameId,gameServer.getActiveGames(),this.getId());
+                        if (joined) {
+                            startTimer();
+                            output.println("Joined game with ID: " + gameId);
+                        } else {
+                            output.println("Failed to join game with ID: " + gameId);
                         }
-                        else {
-                            output.println("Game with the id " + gameID +" doesn't exist");
-
-                        }
-
+                        output.flush();
+                    } else {
+                        output.println("Invalid command format");
+                        output.flush();
                     }
-
-
-//                    boolean succes =  game.joinGame(gameID);
-//                    if(succes){
-//                        output.println("Joined game with the id= " + gameID);
-//                        output.flush();
-//                    }
-//                    else{
-//                        output.println("Failed to join game with the id= " + gameID);
-//                        output.flush();
-//                    }
                 }
 
 
                 else if(command.startsWith("place ")) {
                     String[] tokens = command.split(" ");
-                    if(tokens.length == 3) {
+                    if(tokens.length == 4) {
                         int row = Integer.parseInt(tokens[1]);
                         int col = Integer.parseInt(tokens[2]);
+                        char symbol = tokens[3].toCharArray()[0];
 
-                        //boolean success = board.makeMove(row, col);
-                        output.println("Piece placed successfully at row=" + row + " and column="+col);
+                        boolean moveSubmitted = gameServer.submitMove(row, col,symbol,timer,timeoutTask);
+                        System.out.println("row, col and symbol = " +row +" "+ col +" "+symbol);
+                        if(moveSubmitted){
+                            output.println("Piece ->" + symbol + " placed successfully at row=" + row + " and column="+col);
+                        output.flush();
+                        }
+                        else{
+                            output.println("Failed to submit move row=" + row +" and column= "+ col);
+                            output.flush();
+                        }
                         output.flush();
 //
 //                      output.println("Failed to place piece");
@@ -123,4 +120,18 @@ class ClientThread extends Thread {
             }
         }
     }
+
+    public void startTimer() {
+        timer = new Timer();
+        timeoutTask = new TimerTask() {
+            @Override
+            public void run() {
+
+                gameServer.handleTimeout(getId());
+            }
+        };
+        timer.schedule(timeoutTask, 10000);
+    }
+
+
 }

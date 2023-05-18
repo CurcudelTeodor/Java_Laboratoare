@@ -1,13 +1,12 @@
 package org.example;
 
 public class Player {
-    private final String name;
-    public Player(String name) {
+    private final long name;
+    public Player(long name) {
         this.name = name;
 
     }
-
-    public String getName() {
+    public long getName() {
         return name;
     }
 

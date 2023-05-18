@@ -34,7 +34,7 @@ public class GameClient {
                     socket.close();
                     break;
                 }
-                else if (command.equals("create game ")){
+                else if (command.startsWith("create game ")){
                     String gameID = command.substring(12);
                     output.println("create game " + gameID);
                     String response = input.readLine();
@@ -49,15 +49,16 @@ public class GameClient {
 
                 else if(command.startsWith("place ")){
                     String[] tokens = command.split(" ");
-                    if(tokens.length == 3){
+                    if(tokens.length == 4){
                         int row = Integer.parseInt(tokens[1]);
                         int col = Integer.parseInt(tokens[2]);
-
-                        output.println("I want to move my piece at row=" + row + " and column="+col);
+                        char symbol = tokens[3].toCharArray()[0];
+                        System.out.println(symbol);
+                        output.println("place " + row + " " + col + " " + symbol);
+                        //output.println("I want to move my piece at row=" + row + " and column="+col);
                         output.flush();
                         String response = input.readLine();
                         System.out.println(response);
-
                     }
                     else{
 

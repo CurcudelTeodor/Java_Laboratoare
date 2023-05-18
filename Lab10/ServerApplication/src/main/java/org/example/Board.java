@@ -4,6 +4,11 @@ public class Board {
     private int numRows;
     private int numCols;
 public Board(){};
+
+    public char[][] getBoard() {
+        return board;
+    }
+
     public Board(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
@@ -12,7 +17,7 @@ public Board(){};
     public char[][] initialize(){
         for(int i = 0; i < numRows; i++)
             for(int j = 0; j < numCols; j++){
-                board[i][j]='*';
+                board[i][j]='~';
             }
         return board;
     }
@@ -37,56 +42,65 @@ public Board(){};
     }
 
     public boolean isWinner(char symbol) {
-        // check rows
+        // Check rows
         for (int row = 0; row < numRows; row++) {
-            boolean won = true;
+            int count = 0;
             for (int col = 0; col < numCols; col++) {
-                if (board[row][col] != symbol) {
-                    won = false;
-                    break;
+                if (board[row][col] == symbol) {
+                    count++;
+                    if (count == 5) {
+                        return true;
+                    }
+                } else {
+                    count = 0;
                 }
-            }
-            if (won) {
-                return true;
             }
         }
 
-        // check columns
+        // Check columns
         for (int col = 0; col < numCols; col++) {
-            boolean won = true;
+            int count = 0;
             for (int row = 0; row < numRows; row++) {
-                if (board[row][col] != symbol) {
-                    won = false;
-                    break;
+                if (board[row][col] == symbol) {
+                    count++;
+                    if (count == 5) {
+                        return true;
+                    }
+                } else {
+                    count = 0;
                 }
             }
-            if (won) {
-                return true;
+        }
+
+        // Check diagonals
+        for (int row = 0; row < numRows - 4; row++) {
+            for (int col = 0; col < numCols - 4; col++) {
+                if (board[row][col] == symbol &&
+                        board[row+1][col+1] == symbol &&
+                        board[row+2][col+2] == symbol &&
+                        board[row+3][col+3] == symbol &&
+                        board[row+4][col+4] == symbol) {
+                    return true;
+                }
             }
         }
 
-        // check diagonal
-        boolean won = true;
-        for (int i = 0; i < numRows; i++) {
-            if (board[i][i] != symbol) {
-                won = false;
-                break;
+        // Check anti-diagonals
+        for (int row = 0; row < numRows - 4; row++) {
+            for (int col = numCols - 1; col >= 4; col--) {
+                if (board[row][col] == symbol &&
+                        board[row+1][col-1] == symbol &&
+                        board[row+2][col-2] == symbol &&
+                        board[row+3][col-3] == symbol &&
+                        board[row+4][col-4] == symbol) {
+                    return true;
+                }
             }
-        }
-        if (won) {
-            return true;
         }
 
-        // check anti-diagonal
-        won = true;
-        for (int i = 0; i < numRows; i++) {
-            if (board[i][numCols - 1 - i] != symbol) {
-                won = false;
-                break;
-            }
-        }
-        return won;
+        return false;
     }
+
 
     public void printBoard() {
         System.out.println();
