@@ -3,5 +3,5 @@
 ### Am rezolvat:
 
 * [x] Compulsory
-* [x] Tema integral!! + video demo!!
+* [x] Tema integral!! + video demo!! 
 * [ ] Bonus
