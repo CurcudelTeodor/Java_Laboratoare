@@ -1,13 +1,11 @@
-package com.example.lab11;
+package com.example.clientapplication;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "players")
+
 public class Player {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Integer id;
     private String name;
     private String color;
@@ -35,3 +33,4 @@ public class Player {
         this.color = color;
     }
 }
+
