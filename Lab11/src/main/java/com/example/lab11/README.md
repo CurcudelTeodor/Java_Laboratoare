@@ -13,4 +13,4 @@ toti jucatorii si de a cauta un jucator dupa id-ul sau.
 * Template-uri pentru cererile clientului
 * Template-uri frumoase, stilizate
 * Sincronizare cu baza de date si cu jocurile din laboratorul 10
-* Documentatia javadoc Tools -> Generate JavaDoc -> Custom Scope: 'Lab11' -> Generate
+* Documentatia eleganta javadoc Tools -> Generate JavaDoc -> Custom Scope: 'Lab11' -> Generate
