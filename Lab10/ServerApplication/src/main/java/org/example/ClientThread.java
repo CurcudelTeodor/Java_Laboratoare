@@ -76,7 +76,8 @@ class ClientThread extends Thread {
                         int col = Integer.parseInt(tokens[2]);
                         char symbol = tokens[3].toCharArray()[0];
 
-                        boolean moveSubmitted = gameServer.submitMove(row, col,symbol,timer,timeoutTask);
+                        //trimitem si id0ul thread-ului pentru a putea adauga in bd miscarile si cine le-a facut
+                        boolean moveSubmitted = gameServer.submitMove(row, col,symbol,timer,timeoutTask, this.getId());
                         System.out.println("row, col and symbol = " +row +" "+ col +" "+symbol);
                         if(moveSubmitted){
                             output.println("Piece ->" + symbol + " placed successfully at row=" + row + " and column="+col);
@@ -130,7 +131,7 @@ class ClientThread extends Thread {
                 gameServer.handleTimeout(getId());
             }
         };
-        timer.schedule(timeoutTask, 10000);
+        timer.schedule(timeoutTask, 1000000000);
     }
 
 

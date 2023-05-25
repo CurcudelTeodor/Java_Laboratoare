@@ -24,10 +24,12 @@ public class GameServer {
     }
 
     public GameServer(int port) {
+        GameDAO gameDAO = new GameDAO("jdbc:postgresql://localhost:5432/JavaLab11","postgres","teo");
+
         this.port = port;
         this.isRunning = false;
         this.games = new ArrayList<>();
-        this.gameIdCounter = 1;
+        this.gameIdCounter = gameDAO.getHighestGameId();
         this.activeGames = new ArrayList<>();
     }
 
@@ -62,10 +64,16 @@ public class GameServer {
     }
 
     public int createGame() {
-        int gameId = gameIdCounter++;
-        Game game = new Game(gameId,3);
+        GameDAO gameDAO = new GameDAO("jdbc:postgresql://localhost:5432/JavaLab11","postgres","teo");
+        int gameId_vechi = gameDAO.getHighestGameId();
+        System.out.println("GAME ID VECHI:::::::::" + gameId_vechi);
+
+        int gameId_nou = gameId_vechi + 1;
+        System.out.println("GAME ID NOU:::::::::" + gameId_nou);
+
+        Game game = new Game(gameId_nou,10);
         games.add(game);
-        return gameId;
+        return gameId_nou;
     }
 
     public boolean joinGame(int gameId, List<Game> activeGames, long name) {
@@ -92,7 +100,8 @@ public class GameServer {
         return null; //Nu am gasit jocul
     }
 
-    public boolean submitMove(int row, int col, char symbol, Timer timer, TimerTask timeoutTask){
+    public boolean submitMove(int row, int col, char symbol, Timer timer, TimerTask timeoutTask, long playerID){
+        GameDAO gameDAO = new GameDAO("jdbc:postgresql://localhost:5432/JavaLab11","postgres","teo");
         System.out.println("row, col and symbol = " +row +" "+ col +" "+symbol);
         if(this.board.getBoard()[row][col]!='x' && this.board.getBoard()[row][col]!='o'){
 
@@ -108,6 +117,11 @@ public class GameServer {
 
             this.board.getBoard()[row][col] = symbol;
             board.printBoard();
+            //adaug in bd
+            int idGameDB = this.gameToPlay.getId();
+
+            gameDAO.placePiece(idGameDB,playerID,row,col,symbol);
+
 
             if (board.isWinner('x')){
                 System.out.println("Jucatorul cu x a castigat!!!");
