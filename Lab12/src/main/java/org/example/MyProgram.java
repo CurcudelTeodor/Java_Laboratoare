@@ -1,28 +1,19 @@
 package org.example;
 
-import org.junit.Test;
+import org.example.Test;
 
 public class MyProgram {
-
-    public static int subtract(int a, int b) {
-        return a - b;
-    }
-
-    public static int add(int a, int b) {
-        return a + b;
-    }
-
     @Test
-    public static void testSubtract() {
-        int result = subtract(100, 77);
-        assert result == 23;
-        System.out.println("test scadere pass, esti SMART");
+    public static void m1() { }
+    public static void m2() { }
+    @Test public static void m3() {
+        throw new RuntimeException("Boom");
     }
-
-    @Test
-    public static void testAdd() {
-        int result = add(10, 29);
-        assert result == 39;
-        System.out.println("test adunare pass, esti smart");
+    public static void m4() { }
+    @Test public static void m5() { }
+    public static void m6() { }
+    @Test public static void m7() {
+        throw new RuntimeException("Crash");
     }
+    public static void m8() { }
 }
