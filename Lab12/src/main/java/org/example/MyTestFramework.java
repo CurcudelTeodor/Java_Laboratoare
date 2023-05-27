@@ -21,7 +21,7 @@ public class MyTestFramework {
     }
 
     private static String extractClassName(String classFilePath) {
-        //extragem numele clasei din classFilePath
+        //extragem numele clasei din classFilePath 
         String fileName = classFilePath.substring(classFilePath.lastIndexOf("\\") + 1);
         return fileName.substring(0, fileName.lastIndexOf('.'));
     }
