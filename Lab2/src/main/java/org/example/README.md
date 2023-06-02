@@ -15,7 +15,7 @@ din `Lab2.java` (linia 42).
 * Linie comentata -> Drum rosu (`poza_drumuri.png`)
 * Linie necomentata -> Drum verde (`poza_drumuri.png`)
 
-muzica generata de inteligenta artificiala
+muzica generata de inteligenta artificiala 
 
 ![img.png](img.png)
 
