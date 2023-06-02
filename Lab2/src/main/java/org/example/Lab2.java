@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.List;
+
 public class Lab2 {
     public static void main(String[] args) {
         /*
@@ -25,6 +27,7 @@ public class Lab2 {
         Road roadIasiGalati = new Road("Iasi-Galati", RoadType.NATIONAL, 99, iasi, galati);
         Road roadGalatiTecuci = new Road("Iasi-Tecuci", RoadType.JUDETEAN, 88, galati, tecuci);
         Road tecuciOtopeni = new Road("Tecuci-Otopeni", RoadType.EXPRES, 32.649, tecuci, otopeni);
+        Road galatiOtopeni = new Road("Galati-Otopeni", RoadType.NATIONAL, 33.6, galati, otopeni);
 
         Problem pb = new Problem();
 
@@ -33,9 +36,10 @@ public class Lab2 {
         pb.addLocation(tecuci);
         pb.addLocation(otopeni);
 
-        //pb.addRoad(roadIasiGalati,iasi,galati);
+        pb.addRoad(roadIasiGalati, iasi, galati);
         pb.addRoad(roadGalatiTecuci, iasi, tecuci);
         pb.addRoad(tecuciOtopeni, tecuci, otopeni);
+        pb.addRoad(galatiOtopeni, galati, otopeni);
 
         // System.out.println(iasi.equals(pb.getLocations(1)));
 
@@ -71,5 +75,33 @@ public class Lab2 {
         g.printAdjList(g.adjList);
 
         System.out.println(g.canReach(pb.locations, pb.roads, "Iasi", "Galati"));
+
+
+        System.out.println("dijkstra");
+//        RouteFinder routeFinder = new RouteFinder(g);
+//        List<Location> shortestRoute = routeFinder.findShortestRoute(iasi, otopeni);
+//        System.out.println(shortestRoute);
+
+
+        System.gc();
+        Runtime runtime = Runtime.getRuntime();
+        long usedMemoryBefore =
+                runtime.totalMemory() - runtime.freeMemory();
+        long initialTime = System.currentTimeMillis();
+        System.out.println("Used memory before large instance: " + usedMemoryBefore + " bytes");
+        System.out.println("Initial time: " + initialTime);
+
+        RandomGraphGenerator graph = new RandomGraphGenerator(10000, 20000);
+        RouteFinder routeFinder = new RouteFinder(graph);
+        List<Location> shortestRoute = routeFinder.findShortestRoute(graph.getLocationByName("Location 77"), graph.getLocationByName("Location 474"));
+
+        long runningTime = System.currentTimeMillis() - initialTime;
+        long usedMemoryAfter =
+                runtime.totalMemory() - runtime.freeMemory();
+        long memoryIncrease = usedMemoryAfter - usedMemoryBefore;
+
+        System.out.println("Used memory AFTER large instance: " + usedMemoryAfter);
+        System.out.println("Memry increase: " + memoryIncrease + " bytes");
+        System.out.println("Cat a durat sa calculeze cea mai mica distanta:  " + runningTime + "ms");
     }
 }

@@ -4,7 +4,8 @@ import java.util.*;
 
 public class Graph {
     public Map<String, ArrayList<String>> adjList;
-
+    public ArrayList<Location> locations;
+    public ArrayList<Road> roads;
     /**
      * Construieste un graf cu locatii si drumuri sub forma de HashMap (cheie, valoare).
      * Cheile sunt locatiile, iar valorile sunt locatiile incidente cu cheia, adica
@@ -27,6 +28,8 @@ public class Graph {
      * @author Teo
      */
     public Graph(ArrayList<Location> locations, ArrayList<Road> roads) {
+        this.locations = locations;
+        this.roads = roads;
         //initializam lista de adicenta
         adjList = new HashMap<String, ArrayList<String>>();
         for (Location loc : locations) {
@@ -134,4 +137,29 @@ public class Graph {
         return false;
 
     }
+
+    public List<Location> getNeighbors(Location location) {
+        List<Location> neighbors = new ArrayList<>();
+        ArrayList<String> adjacentLocations = adjList.get(location.getName());
+
+        for (String adjacentLocationName : adjacentLocations) {
+            Location adjacentLocation = getLocationByName(adjacentLocationName);
+            if (adjacentLocation != null) {
+                neighbors.add(adjacentLocation);
+            }
+        }
+
+        return neighbors;
+    }
+
+    // Helper method to get a location by its name
+    private Location getLocationByName(String name) {
+        for (Location location : locations) {
+            if (location.getName().equals(name)) {
+                return location;
+            }
+        }
+        return null;
+    }
+
 }
