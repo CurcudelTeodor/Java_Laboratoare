@@ -12,8 +12,8 @@ sa fie de tip `RandomGraphGenerator`.
 * Pentru ca algoritmul sa aleaga drumul `Iasi -> Galati -> Tecuci -> OTP`
 trebuie comentata linia `pb.addRoad(galatiOtopeni, galati, otopeni);` 
 din `Lab2.java` (linia 42). 
-* Linie comentata -> Drum rosu
-* Linie necomentata -> Drum verde
+* Linie comentata -> Drum rosu (`poza_drumuri.png`)
+* Linie necomentata -> Drum verde (`poza_drumuri.png`)
 
 muzica generata de inteligenta artificiala
 
